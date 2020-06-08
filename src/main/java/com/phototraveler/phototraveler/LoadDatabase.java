@@ -17,11 +17,17 @@ class LoadDatabase {
     CommandLineRunner initDatabase(UserRepository userRepository) {
 
 		return args -> {
-			userRepository.save(new User("Frodo"));
+			userRepository.save(new User("Frodąęłóo","XD","JP2GMD"));
+			userRepository.save(new User("Frodąęłóo","XD","JP2GMD"));
+			userRepository.save(new User("Frodąęłóo","XD","JP2GMD"));
+			userRepository.save(new User("Frodąęłóo","XD","JP2GMD"));
+			userRepository.save(new User("Frodąęłóo","XD","JP2GMD"));
 
 			userRepository.findAll().forEach(employee -> log.info("Preloaded " + employee));
 
 			
 		};
 	}
+
+
 }
