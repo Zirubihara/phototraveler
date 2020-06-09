@@ -2,6 +2,7 @@ package com.phototraveler.phototraveler;
 
 
 import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.context.SpringBootTest;
 import static org.hamcrest.Matchers.containsString;
 import static
@@ -18,16 +19,31 @@ import com.phototraveler.phototraveler.Controller.UserController;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.test.web.servlet.MockMvc;
-@RunWith(SpringRunner.class)
-@WebMvcTest(UserController.class)
+
+
+@ExtendWith(SpringExtension.class)
+//  We create a `@SpringBootTest`, starting an actual server on a `RANDOM_PORT`
+@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+//@RunWith(SpringRunner.class)
+//@WebMvcTest(UserController.class)
 public class ControllerTest {
     @Autowired
-    private MockMvc mockMvc;
+    private WebTestClient webTestClient;
+
+
     @Test
-    public void testHomePage() throws Exception {
-        mockMvc.perform(get("/"))
-                .andExpect(status().isOk());
+    public void testHello() {
+        webTestClient
+                // Create a GET request to test an endpoint
+                .get().uri("/users");
+//                .accept(MediaType.TEXT_PLAIN)
+//                .exchange()
+//                // and use the dedicated DSL to test assertions against the response
+//                .expectStatus().isOk()
+//                .expectBody(String.class).isEqualTo("Hello, Spring!");
     }
 }

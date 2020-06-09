@@ -38,7 +38,7 @@ public class UserController {
     }
 
     @GetMapping("/users/{id}")
-    EntityModel<User> one(@PathVariable Long id) {
+    public EntityModel<User> one(@PathVariable Long id) {
 
         User user = userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException(id));
