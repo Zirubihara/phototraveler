@@ -1,0 +1,14 @@
+GET http://localhost:8080/users
+
+<> 2020-06-17T025249.200.json
+
+###
+
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{"login": "Kanek69", "name": "Kanek96", "nazwisko": "dzbanek", "country": "Bolska", "city": "WalczacaxD"}
+
+<> 2020-06-08T024508.404.json
+
+###

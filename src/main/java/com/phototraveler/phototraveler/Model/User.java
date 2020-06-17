@@ -16,9 +16,28 @@ public class User {
     private String login;
     private String name;
     private String nazwisko;
+    private String country;
+    private String city;
+    private Long points;
 
     public String getNazwisko() {
         return nazwisko;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public void setCountry(String country) {
+        this.country = country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public void setCity(String city) {
+        this.city = city;
     }
 
     public void setNazwisko(String nazwisko) {
@@ -37,8 +56,12 @@ public class User {
     public User() {
     }
 
-    public User(String login, String name, String nazwisko){
-        this.login = login;this.name = name;
+    public User(String login, String name, String nazwisko, String country, String city){
+        this.login = login;
+        this.name = name;
+        this.nazwisko = nazwisko;
+        this.country = country;
+        this.city = city;
 //        this.nazwisko = nazwisko;
     }
 
@@ -62,9 +85,26 @@ public class User {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
+
         User user = (User) o;
-        return Objects.equals(id, user.id) &&
-                Objects.equals(login, user.login);
+
+        if (id != null ? !id.equals(user.id) : user.id != null) return false;
+        if (login != null ? !login.equals(user.login) : user.login != null) return false;
+        if (name != null ? !name.equals(user.name) : user.name != null) return false;
+        if (nazwisko != null ? !nazwisko.equals(user.nazwisko) : user.nazwisko != null) return false;
+        if (country != null ? !country.equals(user.country) : user.country != null) return false;
+        return city != null ? city.equals(user.city) : user.city == null;
+    }
+
+    @Override
+    public int hashCode() {
+        int result = id != null ? id.hashCode() : 0;
+        result = 31 * result + (login != null ? login.hashCode() : 0);
+        result = 31 * result + (name != null ? name.hashCode() : 0);
+        result = 31 * result + (nazwisko != null ? nazwisko.hashCode() : 0);
+        result = 31 * result + (country != null ? country.hashCode() : 0);
+        result = 31 * result + (city != null ? city.hashCode() : 0);
+        return result;
     }
 
     @Override
@@ -72,13 +112,11 @@ public class User {
         return "User{" +
                 "id=" + id +
                 ", login='" + login + '\'' +
-                ", imie='" + name + '\'' +
+                ", name='" + name + '\'' +
+                ", nazwisko='" + nazwisko + '\'' +
+                ", country='" + country + '\'' +
+                ", city='" + city + '\'' +
                 '}';
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, login, name);
     }
 
     //    @Column(name = "FULLNAME", nullable = false, length = 200)

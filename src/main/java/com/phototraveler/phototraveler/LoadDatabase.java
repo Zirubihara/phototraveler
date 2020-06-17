@@ -20,13 +20,13 @@ class LoadDatabase {
     CommandLineRunner initDatabase(UserRepository userRepository, QuestRepository questRepository) {
 
 		return args -> {
-			userRepository.save(new User("Frodąęłóo","XD","JP2GMD"));
-			userRepository.save(new User("Frodąęłóo","XD","JP2GMD"));
-			userRepository.save(new User("Frodąęłóo","XD","JP2GMD"));
-			userRepository.save(new User("Frodąęłóo","XD","JP2GMD"));
-			userRepository.save(new User("Frodąęłóo","XD","JP2GMD"));
+			userRepository.save(new User("Frodąęłóo","XD","JP2GMD","l","m"));
+			userRepository.save(new User("Frodąęłóo","XD","JP2GMD","l","l"));
+			userRepository.save(new User("Frodąęłóo","XD","JP2GMD","l","l"));
+			userRepository.save(new User("Frodąęłóo","XDDDD","JP2GMD","l","l"));
+			userRepository.save(new User("Frodąęłóo","XD","JP2GMD","l","l"));
 
-			userRepository.findAll().forEach(employee -> log.info("Preloaded " + employee));
+			userRepository.findAll().forEach(user -> log.info("Preloaded " + user));
 
 			//questRepository.save(new Quest("xD", Status.IN_PROGRESS));
 
