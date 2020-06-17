@@ -4,11 +4,24 @@ GET http://localhost:8080/users
 
 ###
 
-POST http://localhost:8080/users
+GET http://localhost:8080/quests
+
+<> 2020-06-17T025249.200.json
+
+###
+
+POST http://localhost:8080/quests
 Content-Type: application/json
 
-{"login": "Kanek69", "name": "Kanek96", "nazwisko": "dzbanek", "country": "Bolska", "city": "WalczacaxD"}
+{"name": "jebacandrzejaa", "city": "Andrazej", "status": "COMPLETED", "user": {"id": 1}}
 
 <> 2020-06-08T024508.404.json
 
 ###
+
+POST http://localhost:8080/users
+Content-Type: application/json
+
+{"login": "Andrzej1", "name": "Andrzej1", "nazwisko": "Du1da", "country": "XD1D", "city": "XDDD1","points": 10}
+
+<> 2020-06-08T024508.404.json

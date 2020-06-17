@@ -1,23 +1,41 @@
 package com.phototraveler.phototraveler.Model;
 
+import lombok.*;
+
 import javax.persistence.*;
 
-import java.util.Objects;
+import static javax.persistence.GenerationType.SEQUENCE;
 
+@Data
+@Builder
 @Entity
-
+@NoArgsConstructor
+@AllArgsConstructor
+@Table(name = "USER_TABLE")
 public class User {
 
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = SEQUENCE, generator = "user_seq")
+    @SequenceGenerator(name = "user_seq", sequenceName = "user_seq", allocationSize = 1)
+    @Column(name = "ID", nullable = false, unique = true)
     private Long id;
 
-//    @Column(name = "USER_LOGIN", nullable = false, length = 50, unique = true)
+    @Column(name = "USER_LOGIN", nullable = false, length = 50, unique = true)
     private String login;
+
+    @Column(name = "FULLNAME", nullable = false, length = 200)
     private String name;
+
+    @Column(name = "SECOND_NAME", nullable = false, length = 200)
     private String nazwisko;
+
+    @Column(name = "COUNTRY", nullable = false, length = 50)
     private String country;
+
+    @Column(name = "CITY", nullable = false, length = 50)
     private String city;
+
+    @Column(name = "POINTS", nullable = false)
     private Long points;
 
     public String getNazwisko() {
@@ -51,9 +69,6 @@ public class User {
 
     public void setName(String imie) {
         this.name = imie;
-    }
-
-    public User() {
     }
 
     public User(String login, String name, String nazwisko, String country, String city){
