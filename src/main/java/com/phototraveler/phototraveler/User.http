@@ -13,7 +13,7 @@ GET http://localhost:8080/quests
 POST http://localhost:8080/quests
 Content-Type: application/json
 
-{"name": "jebacandrzejaa", "city": "Andrazej", "status": "COMPLETED", "user": {"id": 1}}
+{"name": "andrzejaa", "city": "Andrazej", "status": "IN_PROGRESS", "user": {"id": 1}}
 
 <> 2020-06-08T024508.404.json
 
@@ -25,3 +25,7 @@ Content-Type: application/json
 {"login": "Andrzej1", "name": "Andrzej1", "nazwisko": "Du1da", "country": "XD1D", "city": "XDDD1","points": 10}
 
 <> 2020-06-08T024508.404.json
+
+###
+
+DELETE http://localhost:8080/quests/2/cancel
