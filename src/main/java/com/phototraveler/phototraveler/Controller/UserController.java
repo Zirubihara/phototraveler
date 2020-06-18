@@ -27,7 +27,7 @@ public class UserController {
         this.userModelAssembler = userModelAssembler;
     }
 
-    @GetMapping("/users")
+    @GetMapping(path = "/users", produces = "application/pt.app-v1.0+json")
     public CollectionModel<EntityModel<User>> all() {
 
         List<EntityModel<User>> users = userRepository.findAll().stream()
@@ -38,7 +38,7 @@ public class UserController {
     }
 
 
-    @GetMapping("/users/{id}")
+    @GetMapping(path = "/users/{id}", produces = "application/pt.app-v1.0+json")
     public EntityModel<User> one(@PathVariable Long id) {
 
         User user = userRepository.findById(id)
@@ -47,7 +47,7 @@ public class UserController {
         return userModelAssembler.toModel(user);
     }
 
-    @PostMapping("/users")
+    @PostMapping(path = "/users", produces = "application/pt.app-v1.0+json")
     ResponseEntity<?> newUser(@RequestBody User newUser) {
         EntityModel<User> entityModel = userModelAssembler.toModel(userRepository.save(newUser));
 
@@ -56,7 +56,7 @@ public class UserController {
                 .body(entityModel);
     }
 
-    @PutMapping("/user/{id}")
+    @PutMapping(path = "/user/{id}", produces = "application/pt.app-v1.0+json")
     ResponseEntity<?> replaceUser(@RequestBody User newUser, @PathVariable Long id) {
 
         User updateUser = userRepository.findById(id)
@@ -76,7 +76,7 @@ public class UserController {
 
     }
 
-    @DeleteMapping("/user/{id}")
+    @DeleteMapping(path = "/user/{id}", produces = "application/pt.app-v1.0+json")
     ResponseEntity<?> deleteUser(@PathVariable Long id) {
         userRepository.deleteById(id);
 
