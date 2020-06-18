@@ -37,10 +37,6 @@ public class UserController {
         return CollectionModel.of(users, linkTo(methodOn(UserController.class).all()).withSelfRel());
     }
 
-    @GetMapping("/u")
-    public String eh(){
-        return "ehh jebac komara";
-    }
 
     @GetMapping("/users/{id}")
     public EntityModel<User> one(@PathVariable Long id) {
