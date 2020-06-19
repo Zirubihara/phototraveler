@@ -32,7 +32,7 @@ public class QuestController {
         this.assembler = assembler;
     }
 
-    @GetMapping("/quests")
+    @GetMapping(path = "/quests", produces = "application/pt.app-v1.0+json")
     public CollectionModel<EntityModel<Quest>> all() {
         List<EntityModel<Quest>> quests = questRepository.findAll().stream()
                 .map(assembler::toModel)
@@ -42,7 +42,7 @@ public class QuestController {
                 linkTo(methodOn(QuestController.class).all()).withSelfRel());
     }
 
-    @GetMapping("/quests/{id}")
+    @GetMapping(path = "/quests/{id}", produces = "application/pt.app-v1.0+json")
     public EntityModel<Quest> one(@PathVariable Long id) {
 
         Quest quest = questRepository.findById(id)
@@ -51,7 +51,7 @@ public class QuestController {
         return assembler.toModel(quest);
     }
 
-    @PostMapping("/quests")
+    @PostMapping(path = "/quests", produces = "application/pt.app-v1.0+json")
     ResponseEntity<EntityModel<Quest>> newQuest(@RequestBody Quest quest) {
 
         quest.setStatus(Status.IN_PROGRESS);
@@ -62,7 +62,7 @@ public class QuestController {
                 .body(assembler.toModel(newQuest));
     }
 
-    @DeleteMapping("/quests/{id}/cancel")
+    @DeleteMapping(path = "/quests/{id}/cancel", produces = "application/pt.app-v1.0+json")
     public ResponseEntity<?> cancel(@PathVariable Long id) {
         Quest quest = questRepository.findById(id)
                 .orElseThrow(() -> new QuestNotFoundException(id));
@@ -79,7 +79,7 @@ public class QuestController {
                         .withTitle("Method not allowed") //
                         .withDetail("You can't cancel an order that is in the " + quest.getStatus() + " status"));
     }
-    @PutMapping("/quests/{id}/complete")
+    @PutMapping(path = "/quests/{id}/complete", produces = "application/pt.app-v1.0+json")
     public ResponseEntity<?> complete(@PathVariable Long id) {
 
         Quest quest = questRepository.findById(id)
