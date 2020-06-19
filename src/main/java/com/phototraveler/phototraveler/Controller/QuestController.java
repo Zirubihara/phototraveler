@@ -1,10 +1,14 @@
 package com.phototraveler.phototraveler.Controller;
 
 import com.phototraveler.phototraveler.Assembler.QuestModelAssembler;
+import com.phototraveler.phototraveler.Config.QuestProps;
 import com.phototraveler.phototraveler.Exception.QuestNotFoundException;
 import com.phototraveler.phototraveler.Model.Quest;
 import com.phototraveler.phototraveler.Model.Status;
 import com.phototraveler.phototraveler.Repository.QuestRepository;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.hateoas.mediatype.problem.Problem;
 import org.springframework.hateoas.CollectionModel;
 import org.springframework.hateoas.EntityModel;
@@ -26,14 +30,18 @@ public class QuestController {
 
     private final QuestRepository questRepository;
     private final QuestModelAssembler assembler;
+    private QuestProps questProps;
 
-    public QuestController(QuestRepository questRepository, QuestModelAssembler assembler) {
+    public QuestController(QuestRepository questRepository, QuestModelAssembler assembler, QuestProps questProps) {
         this.questRepository = questRepository;
         this.assembler = assembler;
+        this.questProps = questProps;
     }
 
     @GetMapping(path = "/quests", produces = "application/pt.app-v1.0+json")
     public CollectionModel<EntityModel<Quest>> all() {
+        Pageable pageable = PageRequest.of(0, questProps.getPageSize());
+
         List<EntityModel<Quest>> quests = questRepository.findAll().stream()
                 .map(assembler::toModel)
                 .collect(Collectors.toList());
