@@ -1,0 +1,10 @@
+POST http://localhost:8080/upload
+Content-Type: multipart/form-data; boundary=WebAppBoundary
+
+--WebAppBoundary
+Content-Disposition: form-data; name="file"; filename="xd.png"
+
+< F:\Users\Kanek\Downloads\xd.png
+--WebAppBoundary--
+
+###
