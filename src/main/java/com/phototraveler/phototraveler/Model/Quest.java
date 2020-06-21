@@ -1,18 +1,18 @@
 package com.phototraveler.phototraveler.Model;
-import java.time.Instant;
+
 import lombok.*;
 import javax.persistence.*;
 
 import static javax.persistence.GenerationType.SEQUENCE;
 
-
 @Data
-@Entity
-@Table(name = "QUEST")
-@EqualsAndHashCode
 @Builder
 @NoArgsConstructor
 @AllArgsConstructor
+@Entity
+@Table(name = "QUEST")
+@EqualsAndHashCode
+
 public class Quest {
 
     @Id
@@ -35,10 +35,4 @@ public class Quest {
     @JoinColumn(name = "USER_ID")
     private User user;
 
-    public Quest(String name, String city, Status status, User user) {
-        this.name = name;
-        this.city = city;
-        this.status = status;
-        this.user = user;
-    }
 }
