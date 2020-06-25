@@ -5,6 +5,9 @@ import lombok.*;
 import javax.persistence.*;
 
 import static javax.persistence.GenerationType.SEQUENCE;
+import javax.validation.constraints.Email;
+import java.time.Instant;
+
 
 @Data
 @Builder
@@ -24,6 +27,13 @@ public class User {
     @Column(name = "USER_LOGIN", nullable = false, length = 50, unique = true)
     private String login;
 
+    @Column(name = "PASSWORD", nullable = false)
+    private String password;
+
+    @Email
+    @Column(name = "EMAIL")
+    private String email;
+
     @Column(name = "FULLNAME", nullable = false, length = 200)
     private String name;
 
@@ -38,5 +48,11 @@ public class User {
 
     @Column(name = "POINTS", nullable = false)
     private Long points;
+
+    @Column(name = "CREATED")
+    private Instant created;
+
+    @Column(name = "ENABLED")
+    private boolean enabled;
 
 }
