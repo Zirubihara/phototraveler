@@ -27,9 +27,10 @@ dependencies {
     compileOnly 'org.projectlombok:lombok'
     compile group: 'org.springframework.hateoas', name: 'spring-hateoas', version: '1.1.0.RELEASE'
     // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-api
+    runtime group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
+
     compile group: 'io.jsonwebtoken', name: 'jjwt-api', version: '0.11.2'
     // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-impl
-    runtime group: 'io.jsonwebtoken', name: 'jjwt-impl', version: '0.11.2'
     // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt-jackson
     runtime group: 'io.jsonwebtoken', name: 'jjwt-jackson', version: '0.11.2'
 
@@ -37,7 +38,7 @@ dependencies {
     compile group: 'javax.validation', name: 'validation-api', version: '2.0.1.Final'
     compile group: 'org.thymeleaf', name: 'thymeleaf', version: '3.0.11.RELEASE'
     // https://mvnrepository.com/artifact/io.jsonwebtoken/jjwt
-    compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
+   // compile group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1'
 
     runtimeOnly 'com.h2database:h2'
     annotationProcessor 'org.projectlombok:lombok'

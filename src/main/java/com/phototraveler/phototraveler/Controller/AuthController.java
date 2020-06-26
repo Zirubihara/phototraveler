@@ -1,10 +1,11 @@
 package com.phototraveler.phototraveler.Controller;
 
-import com.phototraveler.phototraveler.Dto.AuthenticationRespone;
+import com.phototraveler.phototraveler.Dto.AuthenticationResponse;
 import com.phototraveler.phototraveler.Dto.LoginRequest;
 import com.phototraveler.phototraveler.Dto.RegisterRequest;
 import com.phototraveler.phototraveler.Service.AuthService;
 import lombok.AllArgsConstructor;
+import lombok.NoArgsConstructor;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,7 @@ import static org.springframework.http.HttpStatus.OK;
 public class AuthController {
 
     private final AuthService authService;
+    //private final RefreshTokenService refreshTokenService;
 
     @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody RegisterRequest registerRequest) {
@@ -31,7 +33,7 @@ public class AuthController {
     }
 
     @PostMapping("/login")
-    public AuthenticationRespone login(@RequestBody LoginRequest loginRequest){
+    public AuthenticationResponse login(@RequestBody LoginRequest loginRequest) {
         return authService.login(loginRequest);
     }
 

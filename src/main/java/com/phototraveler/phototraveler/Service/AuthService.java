@@ -1,6 +1,6 @@
 package com.phototraveler.phototraveler.Service;
 
-import com.phototraveler.phototraveler.Dto.AuthenticationRespone;
+import com.phototraveler.phototraveler.Dto.AuthenticationResponse;
 import com.phototraveler.phototraveler.Dto.LoginRequest;
 import com.phototraveler.phototraveler.Dto.RegisterRequest;
 import com.phototraveler.phototraveler.Exception.SpringPhotoTravellerException;
@@ -17,6 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Propagation;
 
 import javax.transaction.Transactional;
 import java.time.Instant;
@@ -63,9 +64,10 @@ public class AuthService {
 
     public void verifyAccount(String token) {
         Optional<VerificationToken> verificationToken = verificationTokenRepository.findByToken(token);
-        verificationToken.orElseThrow(() -> new SpringPhotoTravellerException("Invalid TOken"));
-        fetchUserAndEnable(verificationToken.get());
+        fetchUserAndEnable(verificationToken.orElseThrow(() -> new SpringPhotoTravellerException("Invalid Token")));
+
     }
+
 
     private void fetchUserAndEnable(VerificationToken verificationToken) {
         String username = verificationToken.getUser().getLogin();
@@ -74,11 +76,12 @@ public class AuthService {
         userRepository.save(user);
     }
 
-    public AuthenticationRespone login(LoginRequest loginRequest) {
-        Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
+    public AuthenticationResponse login(LoginRequest loginRequest) {
+        Authentication authenticate = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(loginRequest.getUsername(),
                 loginRequest.getPassword()));
-        SecurityContextHolder.getContext().setAuthentication(authentication);
-        String token = jwtProvider.generateToken(authentication);
-        return new AuthenticationRespone(token,loginRequest.getUsername());
+        SecurityContextHolder.getContext().setAuthentication(authenticate);
+        String token = jwtProvider.generateToken(authenticate);
+        return new AuthenticationResponse(token,loginRequest.getUsername());
     }
+
 }
