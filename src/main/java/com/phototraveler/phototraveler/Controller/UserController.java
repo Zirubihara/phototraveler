@@ -58,7 +58,6 @@ public class UserController {
 
     @PutMapping(path = "/user/{id}", produces = "application/pt.app-v1.0+json")
     ResponseEntity<?> replaceUser(@RequestBody User newUser, @PathVariable Long id) {
-
         User updateUser = userRepository.findById(id)
                 .map(user -> {
                     user.setName(newUser.getName());

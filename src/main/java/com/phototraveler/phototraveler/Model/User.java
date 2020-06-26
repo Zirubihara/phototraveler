@@ -34,19 +34,19 @@ public class User {
     @Column(name = "EMAIL")
     private String email;
     //user_roles
-    @Column(name = "FULLNAME", nullable = false, length = 200)
+    @Column(name = "FULLNAME", length = 200)
     private String name;
 
-    @Column(name = "SECOND_NAME", nullable = false, length = 200)
+    @Column(name = "SECOND_NAME", length = 200)
     private String nazwisko;
 
-    @Column(name = "COUNTRY", nullable = false, length = 50)
+    @Column(name = "COUNTRY", length = 50)
     private String country;
 
-    @Column(name = "CITY", nullable = false, length = 50)
+    @Column(name = "CITY", length = 50)
     private String city;
 
-    @Column(name = "POINTS", nullable = false)
+    @Column(name = "POINTS")
     private Long points;
 
     @Column(name = "CREATED")
