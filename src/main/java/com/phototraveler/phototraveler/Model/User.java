@@ -33,7 +33,7 @@ public class User {
     @Email
     @Column(name = "EMAIL")
     private String email;
-
+    //user_roles
     @Column(name = "FULLNAME", nullable = false, length = 200)
     private String name;
 

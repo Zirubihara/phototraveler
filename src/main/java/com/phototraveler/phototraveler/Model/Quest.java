@@ -3,6 +3,8 @@ package com.phototraveler.phototraveler.Model;
 import lombok.*;
 import javax.persistence.*;
 
+import java.time.Instant;
+
 import static javax.persistence.GenerationType.SEQUENCE;
 
 @Data
@@ -34,5 +36,8 @@ public class Quest {
     @OneToOne
     @JoinColumn(name = "USER_ID")
     private User user;
+
+    @Column(name = "CREATED_DATE")
+    private Instant createdDate;
 
 }
